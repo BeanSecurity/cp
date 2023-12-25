@@ -63,11 +63,22 @@ func (b Body) String() string {
 	return fmt.Sprint("Body ", b.id)
 }
 
+func (b Body) Id() int {
+	return b.id
+}
+
 var bodyCur int = 0
 
 func NewBody(mass, moment float64) *Body {
+	body := NewBodyWithId(bodyCur, mass, moment)
+	bodyCur++
+
+	return body
+}
+
+func NewBodyWithId(id int, mass, moment float64) *Body {
 	body := &Body{
-		id:            bodyCur,
+		id:            id,
 		cog:           Vector{},
 		p:             Vector{},
 		v:             Vector{},
@@ -77,7 +88,6 @@ func NewBody(mass, moment float64) *Body {
 		velocity_func: BodyUpdateVelocity,
 		position_func: BodyUpdatePosition,
 	}
-	bodyCur++
 
 	body.SetMass(mass)
 	body.SetMoment(moment)
