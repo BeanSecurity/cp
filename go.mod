@@ -1,3 +1,3 @@
-module github.com/jakecoffman/cp/v2
+module github.com/BeanSecurity/cp
 
-go 1.18
+go 1.21
