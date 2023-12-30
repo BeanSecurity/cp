@@ -151,6 +151,7 @@ func DrawConstraint(constraint *Constraint, options Drawer) {
 	case *DampedRotarySpring:
 	case *RotaryLimitJoint:
 	case *RatchetJoint:
+	case *RotationJoint:
 	default:
 		panic(fmt.Sprintf("Implement me: %#v", constraint.Class))
 	}
