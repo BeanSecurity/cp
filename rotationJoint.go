@@ -32,12 +32,8 @@ func (joint *RotationJoint) PreStep(dt float64) {
 	// calculate moment of inertia coefficient.
 	joint.iSum = 1.0 / (a.i_inv + b.i_inv)
 
-	diff := b.a - a.a
-	if diff > math.Pi {
-		diff = diff - 2*math.Pi
-	} else if diff < -math.Pi {
-		diff = diff + 2*math.Pi
-	}
+	y, x := math.Sincos(b.a - a.a)
+	diff := math.Atan2(y, x)
 
 	// calculate bias velocity
 	maxBias := joint.Constraint.maxBias
